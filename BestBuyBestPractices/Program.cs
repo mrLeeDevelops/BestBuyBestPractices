@@ -35,7 +35,7 @@ namespace BestBuyBestPractices
 
             if (userResponse.ToLower() == "yes")
             {
-                Console.WriteLine("What is the name of your new department?");
+                Console.WriteLine("What is the name of you r new department?");
                 userResponse = Console.ReadLine();
 
                 repo.InsertDepartment(userResponse);
