@@ -25,7 +25,7 @@ namespace BestBuyBestPractices
 
         public void InsertDepartment(string newDepartmentName)
         {
-            _connection2.Execute("INSERT INTO PRODUCTS (Name) VALUES (@departmentName);", 
+            _connection.Execute("INSERT INTO PRODUCTS (Name) VALUES (@departmentName);", 
             new { departmentName = newDepartmentName });
         }
     }   

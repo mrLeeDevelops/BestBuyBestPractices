@@ -18,7 +18,6 @@ namespace BestBuyBestPractices
                 .Build();
 
             string connString = config.GetConnectionString("DefaultConnection");
-            Console.WriteLine(connString);
 
             #endregion
 
@@ -43,14 +42,53 @@ namespace BestBuyBestPractices
             }
 
             Console.WriteLine("Have a great day!");
+
+            //-------------------------------------------------------------------------------
+
+            DapperProductsRepository repo2 = new DapperProductsRepository(conn);
+            Console.WriteLine("Hello user! Here are the current products.");
+            Console.WriteLine("Please press ENTER. . .");
+            Console.ReadLine();
+
+            var depos2 = repo2.GetAllProducts();
+            Print2(depos2);
+            Console.WriteLine("Do you want to add a product?");
+            userResponse = Console.ReadLine();
+
+            if (userResponse.ToLower() == "yes")
+            {
+                Console.WriteLine("What is the name of your new product?");
+                var prodName = Console.ReadLine();
+
+                Console.WriteLine("What is the categoryID of your new product?");
+                var catID = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("What is the price of your new product?");
+                var cost = double.Parse(Console.ReadLine());
+
+                repo2.CreateProduct(prodName, cost, catID);
+                Print2(repo2.GetAllProducts());
+            }
+
+            Console.WriteLine("Have a great day!");
         }
-        private static void Print (IEnumerable<Department> depos)
+    
+        private static void Print(IEnumerable<Department> depos)
         {
                 foreach (var depo in depos)
                 {
                 Console.WriteLine($"ID:  {depo.DepartmentId}  Name:  {depo.Name}");
 
                 }
+        }
+
+        private static void Print2(IEnumerable<Products> depos2)
+        {
+            foreach (var depo in depos2)
+            {
+                Console.WriteLine($"CategoryID:  {depo.CategoryID}  Name:  {depo.Name}  Price:  {depo.Price}");
+
+            }
         }
     }
 }

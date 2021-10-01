@@ -27,8 +27,8 @@ namespace BestBuyBestPractices
 
         public void CreateProduct(string name, double price, int categoryID)
         {
-            _connection2.Execute("INSERT INTO PRODUCTS(Name, Price, CategoryID) VALUES (@name,@price, @categoryID);",
-            new { productsName = (name, price, categoryID) });
+            _connection2.Execute("INSERT INTO PRODUCTS(Name, Price, CategoryID) VALUES (@nameParam, @priceParam, @categoryIDParam);",
+            new { nameParam = name, priceParam = price, categoryIDParam = categoryID });
 
         }
     }
