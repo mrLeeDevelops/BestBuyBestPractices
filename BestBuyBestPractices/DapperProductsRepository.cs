@@ -31,5 +31,11 @@ namespace BestBuyBestPractices
             new { nameParam = name, priceParam = price, categoryIDParam = categoryID });
 
         }
+
+        public void UpdateProducts(string name, double price, int OnSale, int stockLevel)
+        {
+            _connection2.Execute("UPDATE PRODUCTS SET Price = @priceParam, OnSale = @OnSaleParam, StockLevel = @StockLevelParam WHERE Name = @nameParam;",
+             new {nameParam = name, priceParam = price, OnSaleParam = OnSale, StockLevelParam = stockLevel});
+        }
     }
 }
